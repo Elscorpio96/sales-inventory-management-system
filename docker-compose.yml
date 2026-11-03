@@ -1,0 +1,11 @@
+services:
+  shopledger:
+    build: .
+    ports: ["4000:4000"]
+    environment:
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in your shell or a .env file}
+      BUSINESS_NAME: ${BUSINESS_NAME:-My Shop}
+    volumes: ["shopledger-data:/app/data"]
+    restart: unless-stopped
+volumes:
+  shopledger-data:
